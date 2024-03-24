@@ -42,8 +42,12 @@ def main():
 
     print("\nColumn Names:")
     print(df.columns)
+    
+    if 'putCall' in df.columns:
+        df_filtered = df[(df['putCall'] != 'Put') & (df['putCall'] != 'Call')]
+    else:
+        df_filtered = df
 
-    df_filtered = df[(df['putCall'] != 'Put') & (df['putCall'] != 'Call')]
     df_filtered['value'] = pd.to_numeric(df_filtered['value'], errors='coerce')
 
     print("\nTotal Value (excluding Put and Call):")
