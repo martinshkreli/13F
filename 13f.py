@@ -32,6 +32,9 @@ def main():
     file_path = args.file_path
     top_n = args.top_positions
 
+    pd.set_option('display.max_rows', None)  # Set this to None to display all rows or any specific number
+    pd.set_option('display.max_columns', None)  # Optionally set this to None to display all columns
+
     if not os.path.isfile(file_path):
         print(f"Error: File '{file_path}' does not exist.")
         return
