@@ -11,7 +11,9 @@ I included a few 13Fs as an example.
 ## Installation
 
 1. Clone the repository:
-   ```git clone https://github.com/martinshkreli/13F.git```
+   ```
+   git clone https://github.com/martinshkreli/13F.git
+   ```
 2. Navigate to the repository:
    ```
    cd 13F
@@ -20,17 +22,27 @@ I included a few 13Fs as an example.
    ```
    pip install -r requirements.txt
    ```
-```
-python analyze_13f.py path/to/xml/file.xml [-n TOP_POSITIONS]
-```
+   - or if you are using nix then run:
+   ```
+   nix-shell
+   ```
+   - use this ONLY if 'nixpkgs' was not found:
+       ```
+       NIX_BUILD_SHELL=/bin/bash nix-shell
+       ```
 
-Replace `path/to/xml/file.xml` with the path to your 13F XML file.
+5. Run the program:
+    ```
+    python 13f.py path/to/xml/file.xml [-n TOP_POSITIONS]
+    ```
+    - Replace `path/to/xml/file.xml` with the path to your 13F XML file.
 
-Optional arguments:
+## Optional arguments:
+### -n [TOP_POSITIONS] 
+### --top-positions [TOP_POSITIONS]
 - `-n TOP_POSITIONS` or `--top-positions TOP_POSITIONS`: Specify the number of top positions to display (default is 20).
-
-Example:
-`python analyze_13f.py filings/13f_filing.xml -n 10`
+##### Example:
+`python 13f.py filings/13f_filing.xml -n 10`
 
 ## Output
 
