@@ -46,18 +46,19 @@ def main():
     print("\nColumn Names:")
     print(df.columns)
     
-    if 'putCall' in df.columns:
-        df_filtered = df[(df['putCall'] != 'Put') & (df['putCall'] != 'Call')]
-    else:
-        df_filtered = df
+    df['value'] = pd.to_numeric(df['value'], errors='coerce')
 
-    df_filtered['value'] = pd.to_numeric(df_filtered['value'], errors='coerce')
+    if 'putCall' in df.columns:
+        is_option = df['putCall'].astype(str).str.strip().str.casefold().isin(['put', 'call'])
+        df_filtered = df[~is_option].copy()
+    else:
+        df_filtered = df.copy()
 
     print("\nTotal Value (excluding Put and Call):")
-    print(df_filtered['value'].astype(int).sum())
+    print(int(df_filtered['value'].sum()))
 
     print("\nTotal Value:")
-    print(df['value'].astype(int).sum())
+    print(int(df['value'].sum()))
 
     print("\nCount of Rows:")
     print(len(df))
